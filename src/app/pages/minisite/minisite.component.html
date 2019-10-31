@@ -173,24 +173,23 @@
 
 <div class="accommodations-container">
   <div class="accommodationwrap" *ngFor="let h of itinerary.hotels, let i=index">
-    <span>
+    <a href="#explode{{i}}">
       <img src="{{ h.picture }}" alt="" title="" />
       <div class="accommodationtxt">
         <h4>{{ h.title }}</h4>
         <p>{{ h.subTitle }}</p>
         <a class="myBtn" href="#explode{{i}}">lees meer</a>        
       </div>
-    </span>
+    </a>
     <!-- ////////////////////////////////////// -->
     <div id="explode{{i}}" class="ui--modal explode">
       <div>
         <div class="modal-header">
           <a href="#close" class="material-icons ui--close">×</a>
-          <h3 class="huge">{{ h.title }}</h3>
+          <h2 class="huge">{{ h.title }}</h2>
         </div>
         <div class="modal-body">
-          <p innerHTML="{{ h.additionalText }}"></p>
-          <a href="#close" class="ui--button alt">Dismiss</a>
+          <p innerHTML="{{ h.additionalText }}"></p>          
         </div>
       </div>  
     </div>
