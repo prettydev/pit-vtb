@@ -1,0 +1,32 @@
+<div class="flight" data-block="vluchten" *ngIf="this.flights.length > 0">
+  <div class="titles">
+    <h1>VLUCHTEN</h1>
+  </div>
+  <div class="flight-overiew table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th>VERTREK LUCHTHAVEN</th>
+          <th>VLIEGMAATSCHAPPIJ</th>
+          <th>VLUCHTNUMMER</th>
+          <th>VERTREK DATUM</th>
+          <th>AANKOMST VLIEGVELD</th>
+          <th>AANKOMST DATUM</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let flight of this.flights">
+          <td>{{ mappingService.airportByCode(flight.departureAirport) }}</td>
+          <td>{{ mappingService.airlineByCode(flight.airlineCode) }}</td>
+          <td>{{ flight.flightNumber }}</td>
+          <td>{{ flight.departureDate }}</td>
+          <td>{{ mappingService.airportByCode(flight.arrivalAirport) }}</td>
+          <td>{{ flight.arrivalDate }}</td>
+        </tr>
+        <!-- <tr class="seperator">
+          <td colspan="6"></td>
+        </tr> -->
+      </tbody>
+    </table>
+  </div>
+</div>

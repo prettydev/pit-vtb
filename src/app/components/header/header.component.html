@@ -1,0 +1,15 @@
+<div class="menu">
+  <!-- <img src="http://dev.pacificislandtravel.nl/typo3conf/ext/pit/Resources/Public/Images/Logo-Wit.svg" class="logo" alt="" /> -->
+  <img src="assets/images/logo.png" class="logo" alt="" />
+  <vtb-menu
+    [toggle]="true"
+    [stickyAt]="300"
+    [dataSource]="[
+      { name: 'Programma', selector: '[data-block=program]' },
+      { name: 'Landarrangement', selector: '[data-block=accommodations]' },
+      { name: 'Overzicht Kosten', selector: '.overview' },
+      { name: 'Contact', selector: '.footer' }
+    ]"
+  ></vtb-menu>
+  <div class="lower"></div>
+</div>

@@ -1,0 +1,42 @@
+<div class="accommodations circled-images" data-block="accommodations">
+  <div class="titles">
+    <h1>Landarrangement</h1>
+    <h3>
+      In onderstaande accommodaties zullen jullie verblijven
+    </h3>
+  </div>
+
+  <!-- <vtb-elements
+    [dataSource]="itinerary.segments"
+    [unitIds]="[2, 1, 4]"
+    [reverseUnitIds]="false"
+    [elementFields]="[{ name: 'media', max: 4 }, { name: 'title', tag: 'h5' }, { name: 'subTitle', tag: 'h6' }]"
+  ></vtb-elements> -->
+</div>
+
+<div class="accommodations-container">
+  <div class="accommodationwrap" *ngFor="let h of hotels">
+    <span (click)="openModel(h)">
+      <img src="{{ h.picture }}" alt="" title="" />
+      <div class="accommodationtxt">
+        <h4>{{ h.title }}</h4>
+        <p>{{ h.subTitle }}</p>
+        <!-- <h2 innerHTML="{{h.additionalText}}"></h2> -->
+        <a class="myBtn" (click)="openModel(h)">lees meer</a>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="modal myModal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close" (click)="closeModel()">&times;</span>
+      <h2>{{ model_heading }}</h2>
+    </div>
+    <div class="modal-body">
+      <p innerHTML="{{ model_content }}"></p>
+    </div>
+  </div>
+</div>

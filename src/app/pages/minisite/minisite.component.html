@@ -1,0 +1,303 @@
+<!-- <app-header></app-header> -->
+<div class="menu">
+  <img src="http://media.wwtg.nl/original/original/Logo-Wit-4ab414bf.png" class="logo" alt="" />
+  <vtb-menu
+    [toggle]="true"
+    [stickyAt]="300"
+    [dataSource]="[
+      { name: 'Programma', selector: '[data-block=program]' },
+      { name: 'Landarrangement', selector: '[data-block=accommodations]' },
+      { name: 'Overzicht Kosten', selector: '.overview' },
+      { name: 'Contact', selector: '.footer' }
+    ]"
+  ></vtb-menu>
+  <div class="lower"></div>
+</div>
+<!-- Header Ends Here-->
+
+<!-- <app-hero [itinerary]="itinerary"></app-hero> -->
+<div [className]="(itinerary.extraFieldValues | extraField: 1:2) ? 'hero youtube-video' : 'hero cover-images'">
+  <div class="hero-text titles">
+    <vtb-text *ngIf="itinerary.title" [config]="{ name: 'title', tag: 'h2', class: 'vtb-title' }" [dataSource]="itinerary"></vtb-text>
+    <vtb-text *ngIf="itinerary.subTitle" [config]="{ name: 'subTitle', tag: 'h1', class: 'vtb-sub-title' }" [dataSource]="itinerary"></vtb-text> 
+  </div>
+  <vtb-media
+    *ngIf="!(itinerary.extraFieldValues | extraField: 2:2)"
+    [dataSource]="itinerary.cover"
+    [slider]="true"
+    [sliderInterval]="5000"
+  ></vtb-media>
+
+  <div class="youtube-wrapper">
+    <vtb-youtube
+      [dataSource]="itinerary.youtubeUrl"
+      [controls]="false"
+      [autoplay]="false"
+      [loop]="true"
+      [fullscreen]="false"
+    ></vtb-youtube>
+  </div>
+  <div class="arrow-animation">
+      <i class="fas fa-chevron-down bounce"></i>
+      <i class="fas fa-chevron-down bounce"></i>
+      <i class="fas fa-chevron-down bounce"></i>
+  </div>
+</div>
+<!-- App-Hero Ends Here-->
+
+<!-- <app-map [itinerary]="itinerary"></app-map> -->
+<div class="map">
+  <div class="titles">
+    <h1>Bestemming</h1>
+    <h3>Hier gaat de reis naartoe</h3>
+  </div>
+  <agm-map
+    [latitude]="itinerary.markers[0].latitude"
+    [longitude]="itinerary.markers[0].longitude"
+    [zoom]="2"
+    [scrollwheel]="false"
+    [styles]="[
+      { featureType: 'all', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+      { featureType: 'administrative', elementType: 'all', stylers: [{ visibility: 'on' }] },
+      { featureType: 'administrative.country', elementType: 'geometry', stylers: [{ visibility: 'simplified' }, { hue: '#ff0000' }] },
+      {
+        featureType: 'administrative.country',
+        elementType: 'geometry.stroke',
+        stylers: [{ weight: '0.75' }, { visibility: 'on' }, { color: '#e5e9e2' }]
+      },
+      { featureType: 'administrative.country', elementType: 'labels', stylers: [{ visibility: 'off' }, { weight: '0.01' }, { lightness: '79' }] },
+      { featureType: 'administrative.province', elementType: 'geometry.stroke', stylers: [{ weight: '0.01' }] },
+      {
+        featureType: 'landscape',
+        elementType: 'geometry',
+        stylers: [{ saturation: '-92' }, { lightness: '41' }, { gamma: '2' }, { visibility: 'on' }]
+      },
+      { featureType: 'landscape.man_made', elementType: 'geometry', stylers: [{ saturation: '-73' }] },
+      { featureType: 'landscape.natural', elementType: 'geometry', stylers: [{ hue: '#ffc600' }, { saturation: '27' }, { lightness: '24' }] },
+      { featureType: 'landscape.natural.landcover', elementType: 'geometry.stroke', stylers: [{ invert_lightness: true }] },
+      {
+        featureType: 'landscape.natural.terrain',
+        elementType: 'geometry',
+        stylers: [{ hue: '#eaff00' }, { lightness: '0' }, { saturation: '-100' }, { gamma: '2' }]
+      },
+      { featureType: 'landscape.natural.terrain', elementType: 'geometry.fill', stylers: [{ saturation: '-95' }, { lightness: '-100' }] },
+      { featureType: 'poi.park', elementType: 'geometry', stylers: [{ saturation: '-39' }, { lightness: '84' }] },
+      { featureType: 'poi.park', elementType: 'geometry.stroke', stylers: [{ visibility: 'off' }] },
+      {
+        featureType: 'road',
+        elementType: 'geometry',
+        stylers: [{ color: '#e9e8e2' }, { lightness: '-8' }, { saturation: '-100' }, { weight: '1.00' }]
+      },
+      { featureType: 'road', elementType: 'geometry.stroke', stylers: [{ weight: '0.01' }, { lightness: '-50' }] },
+      { featureType: 'road.highway', elementType: 'geometry.fill', stylers: [{ visibility: 'on' }, { weight: '0.20' }, { lightness: '-4' }] },
+      { featureType: 'road.highway', elementType: 'geometry.stroke', stylers: [{ weight: '0.01' }, { visibility: 'off' }] },
+      { featureType: 'road.arterial', elementType: 'geometry.fill', stylers: [{ weight: '0.50' }, { lightness: '40' }] },
+      { featureType: 'road.arterial', elementType: 'geometry.stroke', stylers: [{ weight: '0.01' }, { visibility: 'off' }] },
+      { featureType: 'road.local', elementType: 'all', stylers: [{ visibility: 'off' }] },
+      { featureType: 'road.local', elementType: 'geometry', stylers: [{ weight: '6.79' }, { gamma: '0.94' }] },
+      { featureType: 'road.local', elementType: 'geometry.fill', stylers: [{ weight: '0.10' }, { lightness: '-23' }, { gamma: '7.23' }] },
+      { featureType: 'road.local', elementType: 'geometry.stroke', stylers: [{ weight: '.1' }, { color: '#ff0000' }] },
+      { featureType: 'transit.line', elementType: 'geometry', stylers: [{ color: '#8bc7d6' }, { weight: '0.3' }] },
+      { featureType: 'transit.station.airport', elementType: 'geometry.fill', stylers: [{ saturation: '-62' }, { lightness: '6' }] },
+      {
+        featureType: 'transit.station.airport',
+        elementType: 'geometry.stroke',
+        stylers: [{ saturation: '-83' }, { lightness: '-71' }, { weight: '2.94' }]
+      },
+      { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#d4eaec' }] },
+      { featureType: 'water', elementType: 'geometry.fill', stylers: [{ color: '#00c2ff' }] },
+      { featureType: 'water', elementType: 'labels', stylers: [{ visibility: 'off' }, { color: '#9fd0d6' }] },
+      { featureType: 'water', elementType: 'labels.text.stroke', stylers: [{ visibility: 'off' }] }
+    ]"
+  >
+    <agm-marker *ngFor="let m of itinerary.markers" [latitude]="m.latitude" [longitude]="m.longitude">
+      <agm-info-window>
+        <strong>{{ m.searchPlace }}</strong>
+      </agm-info-window>
+    </agm-marker>
+  </agm-map>
+  <div class="places">
+    <div class="place" *ngFor="let m of itinerary.markers">
+      <i class="fas fa-map-pin"></i>
+
+      <p>{{ m.searchPlace }}</p>
+    </div>
+  </div>
+</div>
+<!-- Map Ends Here -->
+
+<!-- <app-flight [itinerary]="itinerary"></app-flight> -->
+
+<!-- <app-program [itinerary]="itinerary"></app-program> -->
+<div class="program" data-block="program">
+   <div class="titles">
+      <h1>Programma</h1>
+      <h3>Lees hieronder het programma van dag tot dag</h3>
+   </div>
+   <div class="custom-program">
+      <div class="program-parent" *ngFor="let customprogram of itinerary.program">
+         <div class="program-img" *ngIf="customprogram.content && customprogram.media?.length != 1">
+            <div *ngIf="customprogram.media?.length == 1">
+               <img src="{{ customprogram.media[0].url }}" alt="" />
+            </div>
+            <div class="silder-arrow" *ngIf="customprogram.media.length > 1">
+              <vtb-media [dataSource]="customprogram.media" [slider]="true" [sliderInterval]="10000"></vtb-media>
+            </div>
+         </div>
+         <div class="program-content" *ngIf="customprogram.content">
+            <span class="day">Dag {{ customprogram.day }} </span> 
+            <span *ngIf="customprogram.day != customprogram.day + customprogram.nights"> - {{ customprogram.day + customprogram.nights }} </span>
+            <h2 class="">{{ customprogram.title }}</h2>
+            <div innerHTML="{{ customprogram.content }}"></div>
+            <div class="daysinfo" *ngFor="let element of customprogram.elements">
+               <div *ngIf="element.unitId ==1 || element.unitId == 2">
+                  <span class="bluetext">{{ element.date }} - {{ element.endDate }} </span> {{ element.nights }} <span *ngIf="element.nights == 1">nacht</span> <span *ngIf="element.nights > 1">nachten</span> {{ element.title }} -  <span class="bluetext">{{ element.subTitle }}</span> <span *ngIf="element.optional"> (optional)</span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- Program Ends Here-->
+
+
+<!-- <app-accomodation [itinerary]="itinerary"></app-accomodation> -->
+<div class="accommodations circled-images" data-block="accommodations">
+  <div class="titles">
+    <h1>Landarrangement</h1>
+    <h3>
+      In onderstaande accommodaties zullen jullie verblijven
+    </h3>
+  </div>
+</div>
+
+<div class="accommodations-container">
+  <div class="accommodationwrap" *ngFor="let h of itinerary.hotels, let i=index">
+    <span>
+      <img src="{{ h.picture }}" alt="" title="" />
+      <div class="accommodationtxt">
+        <h4>{{ h.title }}</h4>
+        <p>{{ h.subTitle }}</p>
+        <a class="myBtn" href="#explode{{i}}">lees meer</a>        
+      </div>
+    </span>
+    <!-- ////////////////////////////////////// -->
+    <div id="explode{{i}}" class="ui--modal explode">
+      <div>
+        <div class="modal-header">
+          <a href="#close" class="material-icons ui--close">×</a>
+          <h3 class="huge">{{ h.title }}</h3>
+        </div>
+        <div class="modal-body">
+          <p innerHTML="{{ h.additionalText }}"></p>
+          <a href="#close" class="ui--button alt">Dismiss</a>
+        </div>
+      </div>  
+    </div>
+    <!-- ////////////////////////////////////// -->    
+  </div>
+</div>
+
+<!-- <app-overview [itinerary]="itinerary"></app-overview> -->
+<div class="overview">
+  <div class="titles">
+    <h1>Overzicht Kosten</h1>
+
+    <p>
+      <strong>Totale reissom € {{ itinerary.totalPrice }}</strong> <br />
+        Tickets & landarrangement € {{ itinerary.landPrice }} <br />  
+ 
+ 
+      Luchthavenbelastingen & toeslagen € {{ itinerary.airportPrice }} <br />
+
+      Reserveringskosten € {{ itinerary.reservationPrice }} <br />
+    </p>
+    <p>
+      Bij het maken van de offerte is een stoeloptie genomen op de vermelde vluchten. Landarrangementen zijn altijd op aanvraag, tenzij anders
+      vermeld. Wij verzoeken u vriendelijk ons binnen 7 dagen na dagtekening te laten weten wat u van deze mooie offerte vindt. Prijzen zijn onder
+      voorbehoud.
+    </p>
+  </div>
+
+  <div class="lists">
+    <div class="listwrap">
+      <div class="listblk">
+      </div>
+    </div>
+    <div class="listwrap">
+      <div class="listblk">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Overview Ends Here -->
+
+<!-- <app-consultant [itinerary]="itinerary"></app-consultant> -->
+<div class="consultants" data-block="consultants">
+    <div class="titles">
+        <h1>Uw reisspecialist</h1>
+        <h3>
+        Bij Pacific Island Travel haalt u het beste uit uw reis. Voor minder doen
+        we het niet.
+        </h3>
+    </div>
+  
+    <div class="consultants-overview">
+        <div class="consult-team" *ngFor="let c of itinerary.consultants">
+            <div class="team-blog">
+            <div class="team-images">
+                <img src="{{ c.picture }}" alt="{{ c.name }}" />
+            </div>
+            <div class="team-description">
+                <div class="line"></div>
+                <h3>{{ c.name }}</h3>
+                <h4>{{ c.title }}</h4>
+                <p>{{ c.phone }}</p>
+                <p>{{ c.email }}</p>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<!-- Consultant Ends Here -->
+
+
+<!-- <app-footer></app-footer> -->
+<div class="footer">
+  <div class="footer-social">
+    <h1>Wil je meer weten over ons?</h1>
+    <h3>Neem dan contact met ons op!</h3>
+
+    <div class="socials">
+      <div>
+        <a href="https://www.facebook.com/pacificislandtravel.nl" target="_blank"
+          ><i class="fab fa-facebook"> </i
+        ></a>
+      </div>
+      <div>
+        <a href="https://www.instagram.com/pacificislandtravel/" target="_blank"
+          ><i class="fab fa-instagram"></i
+        ></a>
+      </div>
+      <!-- <div>
+        <a href="" target="_blank"
+          ><i class="fab fa-whatsapp"></i
+        ></a>
+      </div> -->
+      <div>
+        <a href="mailto:reisspecialist@pacificislandtravel.nl"><i class="far fa-envelope"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-policy">
+    <p>
+      Etiam sodales vel elit id finibus. Etiam a lorem a mi pulvinar
+      condimentum. Nunc ullamcorper ipsum eu aliquam placerat. Quisque quis
+      dignissim mauris. Phasellus pulvinar arcu dolor, et mollis quam maximus
+      quis. Curabitur nec posuere dolor. Donec aliquam purus interdum eros
+      convallis, ac aliquet mi ullamcorper jenkins ipsum random.
+    </p>
+  </div>
+</div>
+<!-- Footer Ends Here -->

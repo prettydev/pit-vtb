@@ -1,0 +1,39 @@
+<div class="consultants" data-block="consultants">
+  <div class="titles">
+    <h1>Uw reisspecialist</h1>
+    <h3>
+      Bij Pacific Island Travel haalt u het beste uit uw reis. Voor minder doen
+      we het niet.
+    </h3>
+  </div>
+  <!-- <div class="consultants-overview circled-images ng-star-inserted">
+    <div class="consultant ng-star-inserted" *ngFor="let c of consultants">
+      <div class="consultant-image">
+        <img src="{{ c.picture }}" alt="{{ c.name }}" />
+      </div>
+      <h4>{{ c.name }}</h4>
+      <h5>{{ c.title }}</h5>
+      <h6>{{ c.phone }}<br />{{ c.email }}</h6>
+    </div>
+  </div> -->
+  <!-- <p>{{consultname}}</p> -->
+  <!-- <div *ngIf="this.itinerary == consultname "> -->
+    
+    <div class="consultants-overview">
+        <div class="consult-team" *ngFor="let c of finalConsultants">
+        <div class="team-blog">
+          <div class="team-images">
+            <img src="{{ c.picture }}" alt="{{ c.name }}" />
+          </div>
+          <div class="team-description">
+            <div class="line"></div>
+            <h3>{{ c.name }}</h3>
+            <h4>{{ c.title }}</h4>
+            <p>{{ c.phone }}</p>
+            <p>{{ c.email }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- </div> -->

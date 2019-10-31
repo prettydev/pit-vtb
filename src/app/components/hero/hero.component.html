@@ -1,0 +1,40 @@
+<div [className]="(itinerary.extraFieldValues | extraField: 1:2) ? 'hero youtube-video' : 'hero cover-images'">
+  <div class="hero-text titles">
+    <vtb-text *ngIf="itinerary.title" [config]="{ name: 'title', tag: 'h2', class: 'vtb-title' }" [dataSource]="itinerary"></vtb-text>
+    <vtb-text *ngIf="itinerary.subTitle" [config]="{ name: 'subTitle', tag: 'h1', class: 'vtb-sub-title' }" [dataSource]="itinerary"></vtb-text> 
+    <!-- <h1 class="vtb-sub-title">
+      <span>{{subTitle }}</span>
+      <span>{{newvalue }}</span>
+    </h1> -->
+  </div>
+  <vtb-media
+    *ngIf="!(itinerary.extraFieldValues | extraField: 2:2)"
+    [dataSource]="itinerary.cover"
+    [slider]="true"
+    [sliderInterval]="5000"
+  ></vtb-media>
+
+  <!-- <div class="youtube-wrapper" *ngIf="(itinerary.extraFieldValues | extraField : 1 : 2)"> -->
+
+  <div class="youtube-wrapper">
+    <!-- <vtb-youtube
+          [dataSource]="itinerary.extraFieldValues | extraField : 1 : 2"
+          [controls]="false"
+          [autoplay]="true"
+          [loop]="true"
+          [fullscreen]="false"></vtb-youtube> -->
+
+    <vtb-youtube
+      [dataSource]="youtubeSource"
+      [controls]="false"
+      [autoplay]="false"
+      [loop]="true"
+      [fullscreen]="false"
+    ></vtb-youtube>
+  </div>
+  <div class="arrow-animation">
+      <i class="fas fa-chevron-down bounce"></i>
+      <i class="fas fa-chevron-down bounce"></i>
+      <i class="fas fa-chevron-down bounce"></i>
+  </div>
+</div>

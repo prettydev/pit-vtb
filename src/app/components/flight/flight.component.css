@@ -1,0 +1,55 @@
+.flight {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  margin-top: 5rem;
+}
+.flight .titles {
+  grid-column: span 12;
+  text-align: center;
+}
+
+.flight-overiew {
+  grid-column: 1 / span 12;
+  text-align: center;
+}
+
+.flight-overiew table {
+  display: inline-block;
+  border-spacing: 0;
+  width: inherit;
+  border: 0;
+}
+.flight-overiew table th {
+  padding: 15px;
+  border: 0;
+  border-left: 1px solid #d0d0d0;
+  border-top: 1px solid #d0d0d0;
+}
+.flight-overiew table th:first-child {
+  border-left: none;
+}
+.flight-overiew table tbody tr:nth-child(odd) {
+  background-color: #f5f5f5;
+}
+.flight-overiew table td {
+  border: 0;
+  border-top: 1px solid #d0d0d0;
+  border-left: 1px solid #d0d0d0;
+  font-size: inherit;
+  padding: 15px;
+}
+.flight-overiew table td:first-child {
+  border-left: none;
+}
+.flight-overiew tr.seperator td {
+  padding: 0;
+  height: 3px;
+  background-color: #d0d0d0;
+}
+
+@media only screen and (max-width: 767px) {
+  .flight-overiew {
+    overflow-x: auto;
+  }
+}
