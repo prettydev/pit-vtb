@@ -1431,7 +1431,7 @@ vtb-media > div {
 }
 
 .modal-header {
-  padding: 6px 16px;
+  padding: 2px 16px;
   background-color: var(--theme-color);
   color: white;
 }
@@ -1945,7 +1945,7 @@ vtb-media > div {
 }
 
 .program vtb-media>div.media-items img {
-	max-width: 100%
+	/* max-width: 100% */
 }
 
 @-webkit-keyframes slide {
@@ -2234,8 +2234,17 @@ vtb-media > div {
 /*UI Changes 30-10-19 Start*/
 .program {padding: 80px 0;}
 .custom-program .program-parent .program-content h2 {margin: 20px 0;}
-.program vtb-media{height: 400px;margin:10px;border-radius: 0px;}
-.program vtb-media>div.media-items img{height: auto;}
+.program vtb-media{
+  height: 487px;
+  margin:10px;
+  border-radius: 0px;
+}
+.program vtb-media>div.media-items img{
+  /* width:479px;
+  height:479px; */
+  width:100%;
+  /* height: auto; */
+}
 .daysinfo {font-weight: bold;}
 .daysinfo .bluetext {color: var(--theme-color);}
 .program .media-slider-control:after{color: #000;font-size: 12px;background: #fff;padding: 3px 5px;border-radius: 50%;}
@@ -2251,7 +2260,11 @@ vtb-media > div {
 
 @media only screen and (min-width: 1920px) 
 {
-  .program vtb-media > div.media-items img{height: 100%;}
+  .program vtb-media > div.media-items img{
+    /* width:479px;
+    height:479px; */
+    height: 100%;
+  }
   .program vtb-media{height: 488px;margin:10px;border-radius: 0px;}
 }
 
@@ -2306,15 +2319,16 @@ vtb-media > div {
 
 .ui--modal .ui--close {
   position: absolute;
-  top: -3px;
   color:white;
   right: 24px;
   text-decoration: none;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: bold;
 }
 
-.ui--modal p { margin-top: 0 }
+.ui--modal p { 
+  margin: 15px 0;
+}
 
 .ui--modal:target {
   opacity: 1;
